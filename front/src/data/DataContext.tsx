@@ -15,6 +15,10 @@ export const DataContext = React.createContext({} as {
   setFreeInput:React.Dispatch<React.SetStateAction<string>>,
   choiceAnswer: Answer,
   setChoiceAnswer:React.Dispatch<React.SetStateAction<Answer>>,
+  inputText:string,
+  setInputText:React.Dispatch<React.SetStateAction<string>>,
+  clickSubmit: boolean,
+  setClickSubmit: React.Dispatch<React.SetStateAction<boolean>>,
 });
 
 const DataContextProvider = ({ children }: Props) => {
@@ -25,12 +29,14 @@ const DataContextProvider = ({ children }: Props) => {
     situation: 0,
     feel:0,
   })
+  const [inputText, setInputText] = useState("")
+  const [clickSubmit, setClickSubmit] = useState(Boolean)
 
-  useEffect(() => {
-    console.log(choiceAnswer)
-  },[choiceAnswer])
-
-  const value = {freeInput, setFreeInput,choiceAnswer, setChoiceAnswer}
+  const value = {
+    freeInput, setFreeInput,choiceAnswer,
+    setChoiceAnswer,inputText, setInputText,
+    clickSubmit, setClickSubmit
+  }
 
   return (
     <DataContext.Provider value={value} >{children}</DataContext.Provider>

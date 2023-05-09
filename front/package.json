@@ -9,6 +9,7 @@
     "@mui/material": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "axios": "^1.4.0",
     "firebase": "^9.19.1",
     "react": "latest",
     "react-dom": "latest",

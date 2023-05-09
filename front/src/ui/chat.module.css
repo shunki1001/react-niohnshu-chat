@@ -5,6 +5,7 @@
   padding: 20px 10px 40px 10px;
   height: 90vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .chat_message {
   width: 100%;
