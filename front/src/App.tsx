@@ -67,6 +67,8 @@ function App() {
   const [getRecommend, setGetRecommend] = React.useState<Boolean>(false)
   const [gotRecommend, setGotRecommend] = React.useState<Boolean>(false)
 
+  const [buttonClickable, setButtonClickable] = React.useState<Boolean>(false)
+
   // テンプレ会話の順番表示
   React.useEffect(() => {
     defaultQuestion.forEach((item, index) => {
@@ -94,6 +96,9 @@ function App() {
   // Inputの入力
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const activeElement = document.activeElement as HTMLElement;
+    // フォーカスを外す
+    activeElement.blur();
     nextQuestion(currentQuestion.answer)
   };
   // 選択肢ボタンの選択
@@ -137,7 +142,7 @@ function App() {
     try {
       document.getElementsByClassName('question')[0]!.scrollIntoView({ behavior: "smooth"});  
     } catch (error) {}
-  },[currentQuestion])
+  },[currentQuestion, gotRecommend, loading])
 
   // APIをたたく
   function useAsyncEffect(effect: () => Promise<void>, deps?: any[]) {
@@ -153,6 +158,12 @@ function App() {
       setGotRecommend(true)
     }
   }, [getRecommend]);
+
+  React.useEffect(()=>{
+    if (loading){
+      setButtonClickable(false)
+    }
+  },[loading])
 
   const handleClickRetry = () =>{
     window.location.reload()
@@ -213,17 +224,17 @@ function App() {
             </div>
             }
           {/* Loading表示 */}
-          {loading && <WritingLoad />}
+          {loading && <div className='question'><WritingLoad /></div>}
           {/* おススメの表示 */}
           {gotRecommend && 
-            <>
+            <div className='question'>
               <ChatMessages src={older}><>こちらをおススメします！</></ChatMessages>
               <ChatMessages src={older}><>{recommend?.drink.name}</></ChatMessages>
               <ChatMessages src={older}><>{recommend?.drink.reason}</></ChatMessages>
               <ChatMessages src={younger}><>{recommend?.food.name}</></ChatMessages>
               <ChatMessages src={younger}><>{recommend?.food.reason}</></ChatMessages>
               <Button variant='contained' onClick={handleClickRetry}>もう一度聞いてみる</Button>
-            </>            
+            </div>            
           }
       </>
         </ChatContainer>

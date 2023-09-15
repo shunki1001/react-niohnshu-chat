@@ -15,16 +15,17 @@ const getRecommendList = async(chatHistory:Question[]): Promise<recommendList> =
   })
   try {
     const response = await axios.get(`${apiURL}${query}`);
+    console.log(response)
     const content = response.data.result;
     console.log(content)
     return {
       drink: {
-        name: content.split('\n')[0].split('お酒：')[1],
-        reason: content.split('\n')[1].split('理由：')[1],
+        name: content.split('お酒：')[1].split('\n')[0],
+        reason: content.split('理由：')[1].split('\n')[0],
       },
       food:{
-        name: content.split('\n')[2].split('おつまみ：')[1],
-        reason: content.split('\n')[3].split('理由：')[1],
+        name: content.split('おつまみ：')[1].split('\n')[0],
+        reason: content.split('理由：')[2].split('\n')[0],
       }
     }
   } catch (error) {

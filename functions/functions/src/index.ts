@@ -20,7 +20,8 @@ const app = express();
 
 
 // OpenAI APIの認証情報
-const openaiApiKey = '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';
+const openaiApiKey = process.env.REACT_APP_API_KEY;
+console.log(openaiApiKey)
 const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
 
 // JSONのパーサー
@@ -29,11 +30,12 @@ app.use(bodyParser.json());
 // app.use(cors(corsOptions))
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://nihonshu-f58f5.web.app");
+  // res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-// POSTメソッドの処理
+// GETメソッドの処理
 app.get('/process', async (req, res) => {
   try {
     // リクエストボディを取得
@@ -43,7 +45,10 @@ app.get('/process', async (req, res) => {
     下記の6つの情報から、おすすめの日本酒とおつまみを理由と共に提案してください。。
     年齢：${old},性別：${sex},好み：${like},お酒を飲む頻度：${frequency},今回お酒を飲む機会：${place},今回お酒を飲む目的：${why}
     # 出力形式
-    お酒：,理由：,おつまみ：,理由：
+    お酒：
+    理由：
+    おつまみ：
+    理由：
     `
 
     // OpenAI APIの呼び出し
