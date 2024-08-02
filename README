@@ -1,0 +1,14 @@
+## front
+
+npm run start
+npm run build
+firebase deploy --only hosting
+
+## functions(not yet used)
+
+テスト：firebase emulators:start
+firebase deploy --only functions
+
+## backend
+
+gcloud functions deploy chat-functions --gen2 --runtime=python311 --region=asia-northeast1 --source=. --entry-point=app_wrap --trigger-http --allow-unauthenticated
