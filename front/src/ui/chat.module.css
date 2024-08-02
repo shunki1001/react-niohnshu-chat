@@ -1,7 +1,7 @@
-.container{
+.container {
   text-align: right;
   font-size: 14px;
-  background: #7da4cd;
+  background: #f4e7c7;
   padding: 20px 10px 40px 10px;
   height: 90vh;
   overflow-y: scroll;
@@ -19,22 +19,22 @@
 }
 .chatting {
   display: inline-block;
-  position: relative; 
+  position: relative;
   margin: 0 0 0 50px;
   padding: 10px;
   max-width: 250px;
   border-radius: 12px;
-  background: #edf1ee;
+  background: #e0c1a1;
 }
 
 .chatting:after {
   content: "";
   display: inline-block;
   position: absolute;
-  top: 3px; 
+  top: 3px;
   left: -19px;
   border: 8px solid transparent;
-  border-right: 18px solid #edf1ee;
+  border-right: 18px solid #e0c1a1;
   -webkit-transform: rotate(35deg);
   transform: rotate(35deg);
 }
@@ -49,22 +49,23 @@
 }
 .comment p {
   display: inline-block;
-  position: relative; 
+  position: relative;
   margin: 0 10px 0 0;
   padding: 8px;
   max-width: 250px;
   border-radius: 12px;
-  background: #30e852;
+  background: #d06f56;
+  color: #f4e7c7;
   font-size: 15px;
 }
 
 .comment p:after {
   content: "";
   position: absolute;
-  top: 3px; 
+  top: 3px;
   right: -19px;
   border: 8px solid transparent;
-  border-left: 18px solid #30e852;
+  border-left: 18px solid #d06f56;
   -webkit-transform: rotate(-35deg);
   transform: rotate(-35deg);
 }
