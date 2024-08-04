@@ -28,7 +28,7 @@ def process():
         why = request.args.get("why")
 
         chat = f"""
-        下記の6つの情報から、おすすめの日本酒とおつまみを理由と共に提案してください。
+        下記の6つの情報から、おすすめの日本酒（特定の銘柄だとなおよい）とおつまみを理由と共に提案してください。
         年齢：{old},性別：{sex},好み：{like},お酒を飲む頻度：{frequency},今回お酒を飲む機会：{place},今回お酒を飲む目的：{why}
         # 出力形式
         お酒：
@@ -44,7 +44,7 @@ def process():
         }
 
         data = {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4o-mini",
             "messages": [{"role": "system", "content": chat}],
         }
 
